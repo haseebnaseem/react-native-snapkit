@@ -1,4 +1,3 @@
-
 package com.paitoo;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -19,4 +18,25 @@ public class RNReactNativeSnapkitModule extends ReactContextBaseJavaModule {
   public String getName() {
     return "RNReactNativeSnapkit";
   }
+
+  @ReactMethod
+  public void onClick() {
+  		SnapLogin.getAuthTokenManager(this).startTokenGrant();
+  }
+
+  @ReactMethod
+  public boolean isUserLoggedIn () {
+   		SnapLogin.isUserLoggedIn(getContext());
+  }
+
+  @ReactMethod
+  public void revokeToken() {
+  	SnapLogin.getAuthTokenManager(this).revokeToken();
+  }
+
+  @ReactMethod
+  public void boolean isUserLoggedIn () {
+	SnapLogin.isUserLoggedIn(getContext());
+  }
+
 }
