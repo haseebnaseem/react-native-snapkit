@@ -40,4 +40,10 @@ public class RNReactNativeSnapkitModule extends ReactContextBaseJavaModule {
   public void setToken(String accessToken){
     SnapLogin.getAuthTokenManager(getReactApplicationContext()).setAccessToken(accessToken);
   }
+
+  @ReactMethod
+  public void fetchUserData(String query, String variables, callback){
+    SnapLogin.fetchUserData(getReactApplicationContext(),query,variables,callback)
+  }
+
 }
