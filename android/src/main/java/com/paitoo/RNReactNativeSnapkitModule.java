@@ -46,7 +46,7 @@ public class RNReactNativeSnapkitModule extends ReactContextBaseJavaModule {
     boolean isTrue = SnapLogin.isUserLoggedIn(getReactApplicationContext());
     String str = Boolean.toString(isTrue);
     Log.w("Helloooooooooooooooooo", str);
-    promise.resolve(isTrue);
+    promise.resolve(str);
   }
 
   @ReactMethod
@@ -57,6 +57,8 @@ public class RNReactNativeSnapkitModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void setToken(String accessToken) {
     SnapLogin.getAuthTokenManager(getReactApplicationContext()).setAccessToken(accessToken);
+    //promise.resolve(null);
+
   }
 
   @ReactMethod
@@ -142,7 +144,8 @@ public class RNReactNativeSnapkitModule extends ReactContextBaseJavaModule {
     final FetchUserDataCallback ourCallback =
             new FetchUserDataCallback() {
               @Override
-              public void onSuccess(@android.support.annotation.Nullable UserDataResponse userDataResponse) {
+              public void onSuccess(@Nullable UserDataResponse userDataResponse) {
+                Log.w("assd","CODEEEEEEEEEEEEEEEE");
                 if (userDataResponse == null || userDataResponse.getData() == null) {
                   return;
                 }
@@ -159,9 +162,11 @@ public class RNReactNativeSnapkitModule extends ReactContextBaseJavaModule {
               public void onFailure(boolean b, int i) {
                 String B = Boolean.toString(b);
                 String I = Integer.toString(i);
-                Log.w(B,I);
-                promise.reject(B);
+                Log.w(B,"NETTWORKKKKKKKKKKKk");
+
+                promise.reject(I);
               }
             };
+    SnapLogin.fetchUserData(getReactApplicationContext(),query,variables,ourCallback);
   }
 }
